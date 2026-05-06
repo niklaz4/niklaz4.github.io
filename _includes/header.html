@@ -1,0 +1,24 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a href="{{ '/' | relative_url }}" class="site-logo">
+      <span class="logo-bracket">[</span>
+      {{ site.title }}
+      <span class="logo-bracket">]</span>
+      <span class="logo-cursor"></span>
+    </a>
+
+    <nav class="site-nav" id="site-nav">
+      <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">home</a>
+      <a href="{{ '/articles/' | relative_url }}" class="nav-link {% if page.url contains '/writeups' %}active{% endif %}">articles</a>
+      <a href="{{ '/write-ups/' | relative_url }}" class="nav-link {% if page.url contains '/tools' %}active{% endif %}">write-ups</a>
+      <a href="{{ '/about/' | relative_url }}" class="nav-link {% if page.url contains '/about' %}active{% endif %}">about</a>
+      <a href="{{ '/feed.xml' | relative_url }}" class="nav-cta">RSS</a>
+    </nav>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>

@@ -1,0 +1,149 @@
+---
+layout: default
+---
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="animate-in">
+      <p class="hero-tag">Security Research Blog</p>
+    </div>
+    <h1 class="hero-title animate-in animate-in-delay-1">
+      Breaking things to<br>understand <span class="accent">how they work.</span>
+    </h1>
+    <p class="hero-desc animate-in animate-in-delay-2">
+      Deep-dive writeups on offensive security, exploit development, malware analysis, and red team operations. No fluff — just raw technical content.
+    </p>
+
+    <div class="hero-stats animate-in animate-in-delay-3">
+      <div class="stat-item">
+        <span class="stat-value">{{ site.posts | size }}</span>
+        <span class="stat-label">Articles</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">{{ site.categories | size }}</span>
+        <span class="stat-label">Categories</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">∞</span>
+        <span class="stat-label">Caffeine</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED POST -->
+{% assign featured = site.posts | first %}
+{% if featured %}
+<section class="featured-section">
+  <div class="container">
+    <div class="section-label">
+      <span class="section-label__text">Featured Post</span>
+      <span class="section-label__line"></span>
+      <span class="section-label__num">01</span>
+    </div>
+
+    <a href="{{ featured.url | relative_url }}" class="featured-post">
+      <div class="featured-image">
+        <div class="featured-image-overlay"></div>
+        <div class="featured-terminal">
+          <div class="t-line"><span class="t-green">root@kali</span>:<span class="t-dim">~#</span> nmap -sV -sC -p- target.host</div>
+          <div class="t-line t-dim">Starting Nmap 7.94 at 2024-01-15</div>
+          <div class="t-line">&nbsp;</div>
+          <div class="t-line">PORT      STATE  SERVICE VERSION</div>
+          <div class="t-line"><span class="t-green">22/tcp    open   ssh</span>     OpenSSH 8.2p1</div>
+          <div class="t-line"><span class="t-green">80/tcp    open   http</span>    Apache httpd 2.4.41</div>
+          <div class="t-line"><span class="t-red">443/tcp   open   ssl/http</span> nginx 1.18.0</div>
+          <div class="t-line"><span class="t-amber">8080/tcp  open   http-proxy</span></div>
+          <div class="t-line t-dim">3000/tcp  closed node</div>
+          <div class="t-line">&nbsp;</div>
+          <div class="t-line"><span class="t-dim">Service detection: </span><span class="t-ok">Done</span></div>
+          <div class="t-line"><span class="t-green">root@kali</span>:<span class="t-dim">~#</span> <span class="logo-cursor"></span></div>
+        </div>
+      </div>
+
+      <div class="featured-content">
+        <p class="post-category">{{ featured.categories | first | default: "Research" }}</p>
+        <h2 class="featured-title">{{ featured.title }}</h2>
+        <p class="post-excerpt">{{ featured.excerpt | strip_html | truncate: 200 }}</p>
+
+        <div class="post-meta">
+          <span>{{ featured.date | date: "%b %d, %Y" }}</span>
+          <span class="meta-dot"></span>
+          <span>{{ featured.content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+          {% if featured.author %}<span class="meta-dot"></span><span>{{ featured.author }}</span>{% endif %}
+        </div>
+
+        {% if featured.tags %}
+        <div class="post-tags">
+          {% for tag in featured.tags limit:4 %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <span class="read-more">
+          Read writeup
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </a>
+  </div>
+</section>
+{% endif %}
+
+<!-- POSTS GRID + SIDEBAR -->
+<section class="posts-section">
+  <div class="container">
+    <div class="main-grid">
+
+      <!-- Posts -->
+      <div>
+        <div class="section-label">
+          <span class="section-label__text">Latest Writeups</span>
+          <span class="section-label__line"></span>
+          <span class="section-label__num">02</span>
+        </div>
+
+        <div class="posts-grid">
+          {% for post in paginator.posts %}
+            {% unless forloop.first %}
+            {% include post-card.html post=post %}
+            {% endunless %}
+          {% endfor %}
+
+          {% comment %} Fallback without paginator {% endcomment %}
+          {% if paginator.posts == nil %}
+            {% for post in site.posts offset:1 limit:6 %}
+              {% include post-card.html post=post %}
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <!-- Pagination -->
+        {% if paginator.total_pages > 1 %}
+        <nav class="pagination">
+          {% if paginator.previous_page %}
+            <a href="{{ paginator.previous_page_path | relative_url }}" class="page-link">← Prev</a>
+          {% endif %}
+
+          {% for i in (1..paginator.total_pages) %}
+            <a href="{% if i == 1 %}{{ '/' | relative_url }}{% else %}{{ site.paginate_path | replace: ':num', i | relative_url }}{% endif %}"
+               class="page-link {% if i == paginator.page %}active{% endif %}">{{ i }}</a>
+          {% endfor %}
+
+          {% if paginator.next_page %}
+            <a href="{{ paginator.next_page_path | relative_url }}" class="page-link">Next →</a>
+          {% endif %}
+        </nav>
+        {% endif %}
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        {% include sidebar.html %}
+      </aside>
+
+    </div>
+  </div>
+</section>

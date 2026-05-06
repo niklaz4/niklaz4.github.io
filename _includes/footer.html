@@ -1,0 +1,63 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="{{ '/' | relative_url }}" class="site-logo">
+          <span class="logo-bracket">[</span>{{ site.title }}<span class="logo-bracket">]</span>
+        </a>
+        <p>{{ site.description }}</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>// Content</h4>
+        <ul class="footer-links">
+          <li><a href="{{ '/writeups/' | relative_url }}">Writeups</a></li>
+          <li><a href="{{ '/ctf/' | relative_url }}">CTF</a></li>
+          <li><a href="{{ '/malware/' | relative_url }}">Malware Analysis</a></li>
+          <li><a href="{{ '/red-team/' | relative_url }}">Red Team</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>// Resources</h4>
+        <ul class="footer-links">
+          <li><a href="{{ '/tools/' | relative_url }}">Tools</a></li>
+          <li><a href="{{ '/cheatsheets/' | relative_url }}">Cheatsheets</a></li>
+          <li><a href="{{ '/feed.xml' | relative_url }}">RSS Feed</a></li>
+          <li><a href="{{ '/sitemap.xml' | relative_url }}">Sitemap</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>// Contact</h4>
+        <ul class="footer-links">
+          {% if site.author.github %}
+          <li><a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener">GitHub</a></li>
+          {% endif %}
+          {% if site.author.twitter %}
+          <li><a href="https://twitter.com/{{ site.author.twitter }}" target="_blank" rel="noopener">Twitter / X</a></li>
+          {% endif %}
+          {% if site.author.email %}
+          <li><a href="mailto:{{ site.author.email }}">Email</a></li>
+          {% endif %}
+          <li><a href="{{ '/about/' | relative_url }}">PGP Key</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        <span style="color: var(--green);">© {{ 'now' | date: "%Y" }}</span> {{ site.title }} — Built with Jekyll + hosted on GitHub Pages
+      </p>
+      <div class="footer-socials">
+        {% if site.author.github %}
+        <a href="https://github.com/{{ site.author.github }}" target="_blank" class="social-link">gh</a>
+        {% endif %}
+        {% if site.author.twitter %}
+        <a href="https://twitter.com/{{ site.author.twitter }}" target="_blank" class="social-link">tw</a>
+        {% endif %}
+        <a href="{{ '/feed.xml' | relative_url }}" class="social-link">rss</a>
+      </div>
+    </div>
+  </div>
+</footer>

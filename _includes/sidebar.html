@@ -1,0 +1,71 @@
+<!-- About Widget -->
+<div class="sidebar-widget">
+  <div class="widget-header">
+    <span class="widget-header__icon">$</span>
+    <span class="widget-header__title">whoami</span>
+  </div>
+  <div class="widget-body">
+    <p style="font-size: 0.875rem; color: var(--text-2); line-height: 1.6; margin-bottom: 1rem;">{{ site.author.bio }}</p>
+    <div style="display: flex; gap: 0.75rem;">
+      {% if site.author.github %}
+      <a href="https://github.com/{{ site.author.github }}" target="_blank" style="font-family: var(--mono); font-size: 0.7rem; color: var(--green); border: 1px solid rgba(0,255,136,0.3); padding: 0.3rem 0.75rem; border-radius: 3px; transition: all 0.2s;" onmouseover="this.style.background='var(--green)';this.style.color='var(--bg)'" onmouseout="this.style.background='';this.style.color='var(--green)'">github</a>
+      {% endif %}
+      {% if site.author.twitter %}
+      <a href="https://twitter.com/{{ site.author.twitter }}" target="_blank" style="font-family: var(--mono); font-size: 0.7rem; color: var(--text-2); border: 1px solid var(--border); padding: 0.3rem 0.75rem; border-radius: 3px;">twitter</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Categories Widget -->
+<div class="sidebar-widget">
+  <div class="widget-header">
+    <span class="widget-header__icon">#</span>
+    <span class="widget-header__title">Categories</span>
+  </div>
+  <div class="widget-body">
+    <ul class="category-list">
+      {% for category in site.categories %}
+      <li class="category-item">
+        <a href="{{ '/categories/' | append: category[0] | slugify | relative_url }}" class="category-link">{{ category[0] }}</a>
+        <span class="category-count">{{ category[1].size }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<!-- Recent Posts Widget -->
+<div class="sidebar-widget">
+  <div class="widget-header">
+    <span class="widget-header__icon">↑</span>
+    <span class="widget-header__title">Recent Posts</span>
+  </div>
+  <div class="widget-body">
+    <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem;">
+      {% for post in site.posts limit:5 %}
+      <li style="padding-bottom: 1rem; border-bottom: 1px solid var(--border);">
+        <a href="{{ post.url | relative_url }}" style="font-size: 0.875rem; color: var(--text-2); line-height: 1.4; display: block; margin-bottom: 0.25rem; transition: color 0.2s;" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--text-2)'">{{ post.title }}</a>
+        <span style="font-family: var(--mono); font-size: 0.65rem; color: var(--text-3);">{{ post.date | date: "%b %d, %Y" }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<!-- Tags Widget -->
+{% if site.tags.size > 0 %}
+<div class="sidebar-widget">
+  <div class="widget-header">
+    <span class="widget-header__icon">~</span>
+    <span class="widget-header__title">Tags</span>
+  </div>
+  <div class="widget-body">
+    <div class="post-tags" style="margin: 0;">
+      {% for tag in site.tags %}
+        <a href="{{ '/tags/' | append: tag[0] | slugify | relative_url }}" class="tag">{{ tag[0] }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}

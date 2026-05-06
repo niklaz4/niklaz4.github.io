@@ -1,0 +1,31 @@
+{% assign p = include.post %}
+<a href="{{ p.url | relative_url }}" class="post-card">
+  <div class="card-header">
+    <span class="post-category" style="font-size: 0.65rem; margin: 0;">{{ p.categories | first | default: "Research" }}</span>
+    {% if p.severity %}
+    <span class="severity-badge severity-badge--{{ p.severity | downcase }}">{{ p.severity }}</span>
+    {% elsif p.difficulty %}
+    <span class="severity-badge severity-badge--{{ p.difficulty | downcase }}">{{ p.difficulty }}</span>
+    {% endif %}
+  </div>
+
+  <div class="card-body">
+    <h3 class="card-title">{{ p.title }}</h3>
+    <p class="card-excerpt">{{ p.excerpt | strip_html | truncate: 140 }}</p>
+  </div>
+
+  {% if p.tags %}
+  <div style="padding: 0 1.5rem 1rem;">
+    <div class="post-tags" style="margin: 0;">
+      {% for tag in p.tags limit:3 %}
+        <span class="tag">{{ tag }}</span>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="card-footer">
+    <span class="card-date">{{ p.date | date: "%b %d, %Y" }}</span>
+    <span class="card-read-time">{{ p.content | number_of_words | divided_by: 200 | plus: 1 }} min</span>
+  </div>
+</a>

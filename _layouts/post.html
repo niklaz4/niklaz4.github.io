@@ -1,0 +1,81 @@
+---
+layout: default
+---
+
+<article>
+  <!-- Post Header -->
+  <header class="post-header">
+    <div class="container--narrow">
+      <p class="post-category animate-in">{{ page.categories | first | default: "Research" }}</p>
+      <h1 class="animate-in animate-in-delay-1">{{ page.title }}</h1>
+
+      <div class="post-meta animate-in animate-in-delay-2">
+        <span>{{ page.date | date: "%B %d, %Y" }}</span>
+        <span class="meta-dot"></span>
+        <span>{{ content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+        {% if page.author %}
+        <span class="meta-dot"></span>
+        <span>{{ page.author }}</span>
+        {% endif %}
+        {% if page.difficulty %}
+        <span class="meta-dot"></span>
+        <span class="severity-badge severity-badge--{{ page.difficulty | downcase }}">{{ page.difficulty }}</span>
+        {% endif %}
+      </div>
+
+      {% if page.tags %}
+      <div class="post-tags animate-in animate-in-delay-3">
+        {% for tag in page.tags %}
+          <a href="/tags/{{ tag | slugify }}" class="tag">{{ tag }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <!-- Post Body -->
+  <div class="container--narrow">
+
+    {% if page.tldr %}
+    <div class="tldr-box animate-in">
+      <p class="tldr-label">// TL;DR</p>
+      <p>{{ page.tldr }}</p>
+    </div>
+    {% endif %}
+
+    <div class="post-content animate-in">
+      {{ content }}
+    </div>
+
+    <!-- Post Footer -->
+    <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <a href="{{ '/' | relative_url }}" style="font-family: var(--mono); font-size: 0.75rem; color: var(--text-2); display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back to all posts
+        </a>
+
+        <div style="display: flex; gap: 1rem; font-family: var(--mono); font-size: 0.7rem; color: var(--text-3);">
+          <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url | url_encode }}" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--text-3)'">Share on X</a>
+        </div>
+      </div>
+
+      <!-- Related Posts -->
+      {% assign related = site.related_posts | limit:3 %}
+      {% if related.size > 0 %}
+      <div style="margin-top: 3rem;">
+        <div class="section-label">
+          <span class="section-label__text">Related Posts</span>
+          <span class="section-label__line"></span>
+        </div>
+        <div class="posts-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+          {% for rpost in related %}
+            {% include post-card.html post=rpost %}
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </footer>
+
+  </div>
+</article>

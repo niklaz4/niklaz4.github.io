@@ -1,0 +1,58 @@
+title: "null://h4ck"
+description: "Offensive security research, red team tactics and pentests"
+author:
+  name: "N. "
+  bio: "Offensive security analyst. Red teamer. Code breaker."
+  twitter: "@nico_sec"
+  github: "https://github.com/niklaz4"
+
+baseurl: ""
+url: "https://niklaz4.github.io"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    block:
+      line_numbers: true
+
+# Pagination
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+
+paginate: 6
+paginate_path: "/page/:num/"
+
+# Categories
+categories:
+  - Malware Analysis
+  - Red Team
+  - CTF Writeups
+  - Exploit Dev
+  - OSINT
+  - Reverse Engineering
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: false
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
