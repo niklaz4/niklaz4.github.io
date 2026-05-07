@@ -10,7 +10,7 @@
     <nav class="site-nav" id="site-nav">
       <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">home</a>
       <a href="{{ '/articles/' | relative_url }}" class="nav-link {% if page.url contains '/writeups' %}active{% endif %}">articles</a>
-      <a href="{{ '/write-ups/' | relative_url }}" class="nav-link {% if page.url contains '/tools' %}active{% endif %}">write-ups</a>
+      <a href="{{ '/writeups/' | relative_url }}" class="nav-link {% if page.url contains '/tools' %}active{% endif %}">write-ups</a>
       <a href="{{ '/about/' | relative_url }}" class="nav-link {% if page.url contains '/about' %}active{% endif %}">about</a>
       <a href="{{ '/feed.xml' | relative_url }}" class="nav-cta">RSS</a>
     </nav>
