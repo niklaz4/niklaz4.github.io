@@ -10,7 +10,7 @@ tldr: "Phishing still dominates as the leading initial access vector. Understand
 excerpt: "A deep-dive into why phishing remains the most dominant initial access vector, and how professional campaigns are architected from both a technical and human perspective."
 ---
 
-If there's one thing I've learned over the years studying offensive security, it's that no matter how much we advance in defense technology, the human link remains the most reliable one for an attacker. And when we talk about initial access, nothing represents that reality better than phishing. In 2023, around 31% of breaches started with a simple click on a malicious link or attachment. That might look like a dip compared to previous years, but it's still the most dominant vector — and it won't be giving up that crown anytime soon.
+If there's one thing I've learned over the years studying offensive security, it's that no matter how much we advance in defense technology, the human link remains the most reliable one for an attacker. And when we talk about initial access, nothing represents that reality better than phishing. In 2023, around 31% of breaches started with a simple click on a malicious link or attachment. That might look like a dip compared to previous years, but it's still the most dominant vector — and it won't be giving up that crown anytime soon. The image below illustrates this (and please, give the credits to Keith McCammon, the writer of this fantastic [article](https://kwm.me/posts/top-initial-access-vectors-2023/):
 
 ![Phishing awareness illustration - credits to Keith McCammon(kwm.me)](/assets/images/posts/initial-access-in-2023.png)
 
@@ -99,6 +99,7 @@ Automated cloning of legitimate sites is also a double-edged sword. Cloning Gmai
 If the design inspires the necessary trust and the backend is functional, the slight aesthetic difference ceases to be a problem — and for us, it becomes an extra layer of obfuscation against automated systems searching for exact replicas.
 
 ---
+
 
 At the end of the day, what separates an amateur phishing site from a professional one is exactly that combination of protection and the quality of the illusion. A beginner attacker focuses only on the look and forgets they'll be swept off the internet in hours. A professional knows they're building an operation under siege — one that needs to withstand constant attacks from passive and active defense, all while convincing a tired, busy, and perhaps even well-trained user that this site is the real deal.
 
