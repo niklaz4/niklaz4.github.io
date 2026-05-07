@@ -39,15 +39,10 @@ permalink: /about/
       <h2>Responsible Disclosure</h2>
       <p>All vulnerabilities discussed here have been properly disclosed to the affected vendors and are fully remediated or publicly known before publication. I follow a 90-day disclosure timeline aligned with Google Project Zero's policy.</p>
 
-      <h2>PGP Key</h2>
-      <pre><code>-----BEGIN PGP PUBLIC KEY BLOCK-----
-[Your PGP key here]
------END PGP PUBLIC KEY BLOCK-----</code></pre>
-
       <h2>Contact</h2>
       <p>
         {% if site.author.email %}Email: <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a><br>{% endif %}
-        {% if site.author.twitter %}Twitter: <a href="https://twitter.com/{{ site.author.twitter }}" target="_blank">@{{ site.author.twitter }}</a><br>{% endif %}
+        {% if site.author.twitter %}Twitter: <a href="https://x.com/{{ site.author.twitter }}" target="_blank">@{{ site.author.twitter }}</a><br>{% endif %}
         {% if site.author.github %}GitHub: <a href="https://github.com/{{ site.author.github }}" target="_blank">{{ site.author.github }}</a>{% endif %}
       </p>
     </div>
